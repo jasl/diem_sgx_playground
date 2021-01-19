@@ -1,7 +1,11 @@
+cargo-features = ["resolver"]
+
 [package]
 name = "enclave-app"
 version = "1.0.0"
 authors = ["jasl"]
+edition = "2018"
+resolver = "2"
 
 [lib]
 name = "enclaveapp"
@@ -11,7 +15,22 @@ crate-type = ["staticlib"]
 default = []
 
 [dependencies]
-
+bcs = { path = "../diem/vendor/bcs" }
+nibble = { path = "../diem/common/nibble", package = "diem-nibble" }
+short-hex-str = { path = "../diem/common/short-hex-str" }
+curve25519-dalek = { path = "../diem/vendor/curve25519-dalek" }
+serde-name = { path = "../diem/vendor/serde-name" }
+merlin = { path = "../diem/vendor/merlin" }
+sha2 = { path = "../diem/vendor/sha2" }
+rand = { git = "https://github.com/mesalock-linux/rand-sgx.git", tag = "v0.7.3_sgx1.1.3" }
+ed25519-dalek = { path = "../diem/vendor/ed25519-dalek" }
+x25519-dalek = { path = "../diem/vendor/x25519-dalek" }
+aes-gcm = { path = "../diem/vendor/aes-gcm" }
+diem-crypto = { path = "../diem/crypto/crypto" }
+diem-infallible = { path = "../diem/common/infallible" }
+move-core-types = { path = "../diem/language/move-core/types" }
+diem-network-address = { path = "../diem/network/network-address" }
+diem-types = { path = "../diem/types" }
 
 [target.'cfg(not(target_env = "sgx"))'.dependencies]
 sgx_types   = { rev = "v1.1.3", git = "https://github.com/apache/teaclave-sgx-sdk.git" }

@@ -41,13 +41,16 @@ extern crate sgx_tse;
 #[macro_use]
 extern crate sgx_tstd as std;
 
-use sgx_types::*;
-use sgx_types::{sgx_status_t, sgx_sealed_data_t};
-
+use sgx_types::sgx_status_t;
 use std::prelude::v1::*;
+
+extern crate bcs;
+use bcs::to_bytes;
 
 #[no_mangle]
 pub extern "C" fn ecall_main() -> sgx_status_t {
+    let t = to_bytes(&vec![(); 255]);
+    println!("{:?}", t);
 
     sgx_status_t::SGX_SUCCESS
 }
